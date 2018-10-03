@@ -1,0 +1,192 @@
+httpServletRequest概述；
+
+
+
+通过request获得请求行
+获得客户端的请求方式：StringgetMethod（）
+获得请求的资源：String getRequestURI（）//请求所有的资源
+               StringBuffer getRequestURL（）//请求网络资源
+                String getContextPath（）---web应用的名称（重点）
+              String getQueryString （）---get提交url地址后的参数字符串
+               username=zhangsan&password=123
+
+
+
+注意：request获得客户机（客户端）的一些信息；
+request.getRomoteAddr()---获得访问的客户端IP地址；
+
+本地地址：127.0.0.1  localhost 映射
+
+DNS服务器 外网ip；
+ping.www.baidu.com
+
+
+ 通过request获取请求头
+longgetDataHeader（String name）
+String getHeader（String name）（重点）
+Enumeration getHeatherNames（）
+Enumeration getHeaders（String name）
+int getIntHender(String name)
+
+
+
+referer头的作用：执行该次访问的来源；
+可以做防盗链；
+
+
+
+通过request获得请求体
+request.getParameter()获得单个表单值；（用的多）
+requestgetParameterValue（）获得多个表单值；
+Enumeration getParameterNames（）获得所有的请求的名称；
+Map<String,Sring[]> getParameterMap（）活所有的参数 参数封装到一个Map<String,String[]>(非常有用）
+注意：get请求方式的请求参数 上述的方法一样可以获得；
+
+
+
+request的其他功能
+（1）request是一个域对象
+什么是域对象？存储对象的一块内存
+request对象也是一个存储数据的区域对象；
+setAttribute(String name,Object o)
+getAttribute(String name)
+removeAtribute(String name)
+注意：request域的作用范围：一次请求中，请求转发可以获取；重定向两次请求，不可以获取；
+
+
+
+request完成请求转发
+获得请求转发器---path是转发地址
+RequestDispatcher getRequestDispatcher（String path）//服务器端地址，服务器内部地址，/servlet2
+通过转发器对象转发
+requestDispatcher.forward（ServletRequest request，ServletResponse response）
+
+
+
+注意：ServletContext域与Request域的生命周期比较？
+ServletContext：
+创建：服务器启动
+销毁：服务器关闭
+域的作用范围：整个web应用
+
+request：
+创建：访问时创建request
+销毁：响应结束request销毁（只有一瞬间）
+域的作用范围：一次请求中；
+
+
+
+注意：转发和重定向的区别？
+1)重定向两次请求，转发一次请求
+2)重定向地址栏的地址变化，转发地址不变
+3）重新定向可以访问外部网站 转发只能访问内部资源
+4）转发的性能要优于重定向
+
+
+
+注意：客户端地址与服务器端地址的写法？
+客户端地址：
+     是客户端访问服务器的地址，服务器的外部地址   特点：写上web应用的名称；
+     直接输入地址：
+     重定向
+      
+
+服务器端地址：
+      服务器内部资源的跳转的地址； 特点：不需要写web应用的名称；
+
+      转发；
+     
+
+
+
+注册的分析
+RegisterServlet
+1.获取表单的数据（中文乱码）
+BeanUtils:将map中的数据映射到实体中，根据map的key与实体的属性进行比较；
+2.将数据存储到数据库
+
+
+使用BeanUtils进行自动映射封装
+BeanUtils工作原理：将map中的数据 根据key与实体的属性的对应关系封装
+只要key的名字与实体的属性 的名字一样 就自动封装到实体；
+BeanUtils.populate(user, properties);
+
+手动封装uid----uuid-----随机不重复的字符串32位--java代码生成后是36位；
+user.setuid(UUID.randomUUID().toString());
+
+
+//设置request的编码---只适合post方式；
+request.setCharacterEncoding("UTF-8");
+
+iso8859-1
+
+乱码的过程：王五---使用UTF-8编码-----使用iso8859-1解码-----？（？表示乱码字符）
+实现乱码的解决：？------使用iso8859-1编码-----使用utf-8解码----王五；
+                     str.getByte("iso8859-1")//编码
+
+
+
+get方式乱码解决
+//先用iso-8859-1编码 再使用utf-8解码
+username= new String（username.getBytes("iso8859-1"）,"UTF-8");
+
+
+//4.认为注册成功跳转到登录页面；（使用重定向）
+//response.sendRedirect("/WEB15/login.jsp");
+response.sendRedirect(request.getContextPath(）+"/login.jsp");//request.getContextPath()动态的获取web应用的名称；
+
+
+
+用户登录：返回user
+return user;
+
+
+else{}//用户名或密码错误
+      //跳回当前login.jsp
+      //使用转发到login.jsp 向requ中存储错误信息；
+request.setAttribute("loginInfo", "用户名或密码错误");
+//服务器端地址不用写web应用名称；
+request.getRequestDispatcher("/login.jsp").forward(request, response);
+
+
+//jsp中可以嵌入java代码，使用三元运算符解决验证登录错误，出现null字符情况；
+div><%=request.getAttribute("loginInfo")==null?"":request.getAttribute("loginInfo")%></div>
+
+
+
+
+总结：
+reque获得行的内容
+       request.getMethod()
+       request.getRequestURI()
+       request.getRequestURL()
+       request.getContextPath()
+       request.getRemoveAddr()
+       
+request获得头的内容
+       request.getHearder(name)
+request获得体（请求参数）
+        String request.getParameter（name）
+        Map<String,String[]>request.getParameterMap();
+        String[] request.getParameterValues(name);
+        注意：客户端发送的参数 到服务器端都是字符串
+        
+        中文乱码的解决：
+           post：request.setCharacterEncoding("UTF-8");
+           get:
+  parameter=new String(parameter.getBytes("iso8859-1"),"UTF-8");
+
+
+
+request转发的域
+request.getRequestDispatcher(转发的地址).forward(requset,responst)//服务器内部地址；
+request.setAttribute(name,value)
+request.getAttribute(name）
+
+
+
+
+
+
+
+

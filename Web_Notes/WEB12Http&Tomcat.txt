@@ -1,0 +1,144 @@
+Dynamic：动态的；
+referer：来源；
+Cookie：曲奇；
+connection：连接；
+content：内容；
+Agent：代理人；
+modified：缓存；
+last-Modified：最后的修改时间；（访问的资源的最后的修改时间）
+If-Modified-Since:本地这个文件上一次修改时间；
+location：位置；
+Disposition：配置；性情；
+Resources:资源，优势；
+Preferences：参数选择；
+Server：服务器；
+internal：内部的；
+Enterprise:企业；事业
+Application：用途，应用软件；
+Modules：模块；
+Sources：来源，软件源；
+paths：路径；
+Dependencies：依赖关系，相关性；
+Module:模块，组件；
+application：应用软件；
+applet：小应用程序；
+directory：目录；
+
+Servlet（Server Applet）：是java Servlet的简称，称为小服务程序或服务连接器，用java编写的服务器端程序，主要功能在于交互式地浏览和修改数据，生成动态Web内容；
+
+
+Http协议
+Http，超文本传输协议是互联网上应用最为广泛的一种网络协议。所有的WWW文件都必须遵守这个标准。设计HTTP最初的目的是为了提供一种发布和接受HTML页面的方法；
+
+post提交比get提交更安全，post是隐藏形式；
+
+HTTP/1.0,发送请求，创建一次连接，获得一个web资源，连接断开。
+HTTP/1.1,发送请求，创建一次连接，获得多个web资源，保持连接。
+
+http请求，请求行：请求方式 资源的地址 协议版本；
+请求头：格式 key value；
+请求体：post提交方式的参数；
+
+http响应，响应行：协议的版本 状态码 状态的描述信息；
+常见的状态码：200：代表一切正常；
+              302：重定向；
+              304：拿本地资源；服务器地址没有改变拿本地缓冲；
+              404：没有该资源；
+              500：服务器端错误；
+
+响应头：key：value；
+last-Modified：最后的修改时间；（访问的资源的最后的修改时间）
+If-Modified-Since:本地这个文件上一次修改时间；
+
+响应体：页面要显示的正文；
+
+
+
+
+Tomcat服务器
+1、B/S系统和C/S系统；
+Brower/Server:浏览器 服务器 系统-----网站
+Client/Server:客户端 服务器 系统-----qq、飞秋、大型游戏
+2、web应用服务器
+供向外部发布web资源的服务器软件
+3、web资源
+存在于web应用服务器可供外界访问的资源就是web资源；
+例如：存在于web应用服务器内部的Html、css、js、图片、视频等
+静态资源：指web页面中供人们浏览额数据始终不变。比如html、css、js、图片、多媒体；
+动态资源：指web页面中提供人们浏览的数据是由程序产生的，比如：JSP/Servlet
+javaweb领域：动态资源认为通过java代码去生成html
+
+4、请求和响应；
+
+5、请求的URL地址；
+
+
+
+
+
+Web开发中常用的web应用服务器；
+Tomcat：Apache开源组织下的 开源免费的中小型web应用服务器，支持javaEE中的servlet和jsp规范；
+
+
+conf  server.xml代表tomcat的核心配置文件；
+
+logs：日志
+webapps：放程序项目
+
+startup.bat windows版运行
+startup.sh linux版运行
+
+http//localhost:8080/
+
+Tomcat的启动和运行
+双击Tomcat下的bin下的startup.bat启动Tomcat
+
+shutdown.bat关闭Tomcat
+
+netstat -aov     通过命令行查看端口号
+任务管理器快捷方式：Ctrl键+Shift键+Esc键的组合键；
+
+
+
+Tomcat启动不成功的原因：1.没有配置JAVA_HOME环境变量；
+                       2.端口号被占用；
+    80端口为http默认端口；
+
+
+
+
+Web应用的目录结构
+mail
+ |
+ |------html、jsp、css、js文件等
+ |
+ |
+ |------WEB-INF目录
+            |
+            |-----classes目录------（java类）
+            |  
+            |-----lib目录---（java类运行所需的jar包）
+            |
+            |-----web.xml文件----（web应用的配置文件）
+
+
+
+http：//localhost:80/mail/WEB-INF/2.html
+
+404:代表服务器找到了，找不到资源；
+
+注意WEB-INF目录是受保护的，外界不能直接访问；
+
+
+eclipse和Tomcat的绑定；
+new Dynamic Web Project；
+
+
+
+
+
+
+
+
+
+

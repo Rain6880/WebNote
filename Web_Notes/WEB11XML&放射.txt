@@ -1,0 +1,159 @@
+使用放射模拟servlet执行
+
+XML意思是可扩展的标记语言，HTML中的元素是固定的，XML的标签是可以由用户自定义的；
+XML不是对HTML的替代；
+XML是对HTML的补充。
+XML标签对大小写敏感；
+XML文档必须有根元素；
+应用：配置文件；
+      存放数据；
+
+
+XML文档声明：version版本必须写，1.0版本；
+文档声明必须从文档的0行0列开始；
+
+注释不会被执行；
+
+一个元素中不能出现同名属性；
+
+
+CDATA区不会被解析；
+<![CDATA[
+任意内容
+]]>
+
+
+
+DTD（Document Type Definition）约束
+用来约束XML文档；DTD文档很少自己写，都是别人提供；
+1.内部DTD，在XML文档内部嵌入DTD，只对当前的XML有效；
+2.外部DTD ，本地DTD；SYSTEN
+3.外部DTD， DTD文档在网络上，一般都有框架提供；PUBLIC
+
+
+元素声明：
+？问号：表示对象可以出现，但只能出现一次；也可以是零次；
+*星号：表示该对象允许出现任意次数，也可以出现是零次；
++加号：表示该对象最少出现一次，可以出现多次；
+（）括号：用来给元素分组；
+|竖条：表明在列出的对象中选择一个；且只能出现一次；
+，逗号：表示对象必须按指定的顺序出现；
+注意：用逗号隔开无其它符号，表示必须有，且只能出现一次；
+
+
+PDDATA表示文本内容；
+
+
+我们很少自己编写DTD约束文档，通过框架提供的DTD约束文件；
+
+
+Schema是新的XML文档约束；数据类型特别完善；
+#IMPLIED:属性不是必须的；
+Schema文档的扩展名为xsd；
+Schema支持名称空间；（跟包类似）
+
+案例文档中同一个“命名空间”分别使用“默认命名空间”和“显示命名空间”进行引入，所以文档中<schema>和<xsd:schema>作用一样；
+什么是命名空间：如果一个XML文档中使用多个Schema文件，而这些Schema文件中定义了相同名称的元素是就会出现名字冲突；每个元素和
+属性都有自己的名称空间，就不会出现名称冲突问题；
+
+默认命名空间：<xxx xmlns="">,使用<标签>;
+显式命名空间：<xxx xmlns:别名=“”>,使用<别名：标签>
+
+
+Schema:构架
+instance：例子
+hibernate:冬眠，休眠；
+text：文本；
+attributeValue：属性值；
+newinstance：反射；
+servlet：控制器；
+url：网址，链接；
+pattern：模式，式；
+Override:覆盖
+destory：摧毁；
+reference:引用；
+sax：简单应用程序接口；
+method:方法；
+invoke：调用；
+
+
+
+
+XMl常用的三种解析方式：
+1.DOM：将文档一次性加载到内存形成树形结构，进行解析；
+优点：元素与元素之间保持结构关系，故可以进行增删改查；缺点，XML文档内存过大；可能出现内存溢出显现；
+2.SAX：Simpie Api for XML：事件驱动的方式，边读边解析；优点，如果文档大，不会出现溢出，不能进行增删改查；
+3.PULL;Android内置的XML解析方式，类似SAX。（了解）
+
+
+常见的解析开发包：
+JAXP
+JDom：dom4j兄弟
+jsoup
+dom4j：比较常见的解析开发包，hibernate
+
+
+
+需要使用dom4j，必须导入jar包，dom4j必须使用核心类SaxReader加载xml文档获得Document，通过Document对象获得文档的根元素。
+
+
+反射的代码演示
+publc interface MyServlet implements IMyServlet{
+    public void init();//1.初始化
+    public void service();//2.执行
+    public void destory（);//3.销毁
+     }
+
+什么是反射?
+JAVA反射机制是在运行状态中，对于任意一个类，都能够知道这个类的所有属性和方法：对于任意一个对象，都能够调用它的任意一个方法和属性
+使用反射，可以在运行时对类Class，构造方法Constructor、普通方法Method、字段Field进行操作；
+
+动态获取指定类以及类中的内容（成员），并运行其内容。
+应用程序已经运行，无法再其中进行new对象的创建，就无法使用对象。这时可以根据配置文件的类全名去找对应额字节码文件，并加载进内存，并创建该类对象实例。这就是使用放射技术完成；
+
+1.获取class对象的方式一
+Person p =new Person();
+Class class = p.getClass();
+2.获取class对象的方式二
+Class class = person.class;
+3.获取class对象的方式三（放射）
+Class class = Class.forname("cn.itcast.bean.Person");//必须类全名；
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

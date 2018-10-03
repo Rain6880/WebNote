@@ -1,0 +1,355 @@
+day02
+	form：表单
+	action:行动(提交的路径)
+	method：方法(提交的方式)
+	input：输入
+	type：类型
+	text：文本(文本输入项)
+	password：密码
+	radio：单选按钮
+	checkbox：复选框
+	file：文件(文件上传项)
+	hidden：隐藏字段
+	reset：重置(重置按钮)
+	button：按钮(普通按钮)
+	name：名称(元素名称)
+	value：值(输入项的内容)
+	size：大小(可以是文字字体的大小，也可以是输入框的宽度)
+	checked：被选中
+	readonly：只读
+	disabled：不可用的
+	maxlength：最大长度(输入框可以输入的最大长度)
+	select：选择(下拉列表项)
+	option：条目(下拉列表项)
+	textarea：区域(文本输入域)
+	submit：提交(提交按钮)
+	selected：选择(下拉列表被选中)
+
+	style：样式
+	color：颜色
+	font-size：字体大小
+	pink：粉红色
+	gold：金黄色
+	gray：灰色
+	blue：蓝色
+	red：红色
+	yellow：黄色
+	black：黑色
+	white：白色
+	background-color：背景颜色
+
+	border：边框
+	width：宽度
+	height：高度
+	margin：外边距
+	padding：内边距
+	float：浮动
+	clear：清除
+	none：无(元素不浮动)
+	left：左边
+	right：右边
+	both：都(同时)
+	display：显示方式
+	block：显示的(显示为块级元素)
+	inline：在一行(显示为内联元素)
+	div：块级元素的区域
+	span：内联元素的区域
+	element：元素
+	top：顶部
+	bottom：底部
+	product：产品，商品
+	header：头部信息
+	menu：菜单
+	show：显示
+	father：父亲
+	big：大的
+	small：小的
+=============================================================
+day03
+	document：文档
+	check：检查
+	change：改变
+	init：初始化
+	history：历史
+	alert：警告框
+	confirm：确认框
+	prompt：输入框
+	function：功能(函数)
+	click：点击
+	back：返回
+	tips：提示
+	info：信息
+	onfocus：聚焦
+	onblur：离焦
+	location：位置
+	screen：屏幕
+	navigator：导航(浏览器相关信息)
+
+=============================================================
+day04
+	onmouseover:鼠标移入
+	onmouseout:鼠标移出
+	attribute：属性
+	node：节点
+	document:文档
+	element：元素
+	textNode：文本节点
+	append：追加
+
+新标签的学习：
+ <thead>
+         <tr>
+          <th></th>
+         </tr>
+</thead>
+ <tbody>
+         <tr>
+          <td></td>
+         </tr>
+</tbody>
+确定事件（页面加载事件onload）
+获取元素：获取表格（document。getElementById（）），最终是为了获取表格中Tbody里的行数(长度）。
+Tbody里面的行数（rows.length）
+JS的遍历（for循环）
+获取奇数行和偶数行（对遍历中的角标对2取余）
+设置背景颜色（.style.backgroundColor）
+
+3.步骤分析（隔行换色）
+第一步：确定事件（onload）并为其绑定一个函数；
+第二步：书写函数（获取表格）；
+第三步：获取Tbody里面的行数；
+第四步：对Tbody里面的行数进行遍历；
+第五步：获取奇数行和偶数行（角标对2取余）
+第六步：分别对奇数行和偶数行设置背景颜色；
+
+5.实现一个表格的高亮显示
+ 分析：
+   第一步：确定事件(onmouseover和onmouseout）并为其绑定一个函数
+   第二步：获取鼠标移上去哪行，对其设置背景颜色；
+
+
+
+6.总结
+回顾之前使用过的事件
+（onsubmit/onclick鼠标单击/onload/onfocus/onblur/onmouseover/onmouseout）
+onfocus/onblur:聚焦离焦事件，用于表单校验的时候比较合适
+Onclick/ondblclick:鼠标单击和双击事件
+onkeydown/onkeypress:搜索引擎使用较多；
+onload：页面加载事件，所有的其它操作（匿名方式）都可以放到这个绑定的函数里面去；
+如果是有名称，那么在html页面中只能有一个。
+onmouseover/onmouseout/onmousemove:购商网站品详细物页；
+onsubmit:表单提交事件；有返回值，控制表单是否提交。
+onchange：当用户改变内容的时候使用这个事件（二级联动）
+
+
+
+
+
+
+六.使用js完成全选和全不选；
+确定事件（鼠标单击事件onclick），事件绑定到编号前面的复选框里面；
+
+获取编号前面的复选框的状态（是否选中）
+    获取复选框：var checkAllEle = document.getElementById("id")
+
+    获取复选框的状态：chbckAllEle.checked?;
+
+获取下面所有的复选框：
+document.getElementsByName("name");
+
+   步骤分析
+
+第一步：确定事件（onclick）并为其绑定一个函数；
+第二步:书写函数（获取编号前面的复选框，获取其状态）；
+
+第三步：判断编号前面复选框的状态（如果为选中，获所有的复选框，并将其状态置为选中
+
+第四步：判断编号前面复选框的状态（如果未选中，获所有的复选框，并将其状态置为未选中；
+
+
+注：getElementById（）返回对拥有制指定id的第一个对象的引用。
+    getElementByName（）返回带有指定名称的对象集合；
+
+   DOM文档结构图：Document文档、Element元素、Attribute属性、Text文本、（Node节点）
+
+1.Document：整个html文件都成为一个document文档；
+2.Element：所有的标签都是Element元素；
+3.Attribute:标签里面的属性；
+4.Text：标签中间夹着的内容为text文本；
+5.Node：document、element、attribute、text统称为节点node.
+
+Document对象，
+每个载入浏览器的html文档都会成为Document对象
+getElementById()返回对拥有指定id的第一个对象的引用。
+getElementByName（）返回带有指定名称的对象集合。
+getElementByTagName（）返回带有指定标签的对象集合。
+后面两个方法获取之后需要遍历；
+以下两个方法很重要，但是在手册中查不到；
+创建文本节点：document.createTextNode（）
+创建元素节点：document.createElement()
+
+
+
+Element对象，
+我们所认知的html页面中所有的标签都是element元素；
+element.appendChild()向元素中添加新的子节点，作为最后一个子节点。
+element.firstChild 返回元素的首个子节点；
+element.getAttribute()返回元素节点的指定属性值；
+element.innerHTML 设置或返回元素的内容；
+element.insertBefore()在指定的已有的子节点之前插入新节点；
+element.lastChild 返回元素的最后一个子元素；
+element.setAttribute()把指定属性设置或更改为指定值；
+
+Attribute对象，
+我们所认知的html页面中所以标签里面的属性都是attribute；
+attr.name 返回属性的名称；
+attr.value 设置或返回属性的值；
+
+
+
+DOM：文档对象模型；
+我们希望点击一个按钮实现动态添加城市
+分析
+    事件（onclick）
+    获取ul元素节点；
+    创建一个城市的文本节点
+    创建一个li元素节点
+    将文本节点添加到li元素节点中去；
+    使用elelment里面的方法appendChild（）来添加子节点；
+
+
+
+使用js完成省市二级联动；
+技术分析
+事件（onchange）
+使用一个二维数组来存储省份的城市（二维数组的创建？）；
+获取用户选择的省份（使用方法传参的方式：this.value代表当前操作的对象）
+遍历数组（获取省份与用户选择的省份比较，如果相同了，继续遍历该省份下的所有城市）；
+创建文本节点和元素节点并进行添加操作；
+
+
+文本中查不到的方法
+createTextNode（）创建文本节点
+createElement（）创建元素节点
+appendChild（）追加子节点
+
+3.步骤分析
+第一步：确定事件（onchange）并为其绑定一个函数；
+第二步：创建一个二维数组用于存储省份和城市；
+第三步：获取用户选择的省份，
+第四步：遍历二维数组中的省份
+第五步：将遍历的省份与用户选择的省份比较；
+第六步:如果相同，遍历该省份下所有的城市
+第七步：创建城市文本节点
+第八步：创建option元素节点
+第九步：将城市文本节点添加到option元素节点中去；
+第十步：获取第二个下拉列表，并将opton元素节点添加进去；
+第十一步：每次操作前清空第二个下拉列表中的option内容；cityEle.options.length=0;
+
+
+javaScript Array对象（特点:集合长度可变，JS中存储的对象可以是不同类型的数据）
+创建Array对象的语法：
+new Array();
+new Array(size);
+new Array(element0,element1,...,elementn);
+(var cities= new Array(3)
+cities[0]= new Arrty("","","")
+)
+
+
+5.总结
+javascript内置对象
+JavaScript对象
+JS Array
+JS Boolean
+JS Date
+JS Math
+JS Number
+JS String
+JS RegExp(正则表达式)
+
+Array对象
+数组的创建；
+Array对象
+Array对象用于在单个的变量里面存储多个值；
+创建Array对象的语法：
+new Array();
+new Array(size);
+new Array(element0,element1,...,elementn);
+数组的特点：长度可变！数组的长度=最大角标+1；
+注意要点：(1)创建两个集合，然后使用concat（）把它们连接起来；
+代码：document.write(arr.concat(arr2))
+          (2)创建一个数组，然后把它的所有元素放入一个字符串中；
+代码：document.write(arr.join());
+
+
+
+Boolean对象
+对象创建
+创建Boolean对象的语法：
+new Boolean（value）；  //构造函数
+Boolean（value）;       //转换函数
+如果value不写，那么默认创建的结果为false；
+
+
+
+Date对象
+gettime（）返回1970年1月1日至今的毫秒值；
+解决浏览器缓存问题
+
+
+Math和Number对象
+与java里面基本一致。
+
+
+
+String对象
+match（） 找到一个或多个正则表达式的匹配；
+substr（） 从起始索引号提取字符串中指定数目的字符；
+substring（） 提取字符串中两个指定的索引号之间的字符；
+代码：
+<script>
+     var str = "-a-b-c-d-e-f-";
+     var str1=str.substr(2,4);//-b-c
+     //alert(str1);
+
+     var str2 = str.substring(2,4);//-b含头不含尾；
+     alert(str2);
+<script>
+
+
+RegExp对象
+正则表达式对象
+test检索字符串中指定的值。返回true或false；
+
+
+
+
+
+5.2全局函数
+全局属性和函数可用于所有内建的JavaScript对象
+decodeURI（）解码某个编码的URI；
+
+decodeURIComponent（）解码一个编码的URI组件；
+
+encodeURI（）把字符串编码为URI；
+
+encodeURIComponent（）把字符串编码为URI组件
+
+parseFloat（）解析一个字符串返回一个浮点数；
+
+
+parseInt（）解析一个字符串并返回一个整数；
+使用parseInt（）来解析不同的字符串：
+代码：parseInt（“17”，8）；//八进制，返回15（8+7）；
+
+eval()计算JavaScript字符串，并把它作为脚本代码来执行。
+var str2= “alert（'abc'）”;
+eval(str2)    //abc
+
+
+
+
+
+
+

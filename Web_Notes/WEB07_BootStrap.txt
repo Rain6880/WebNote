@@ -1,0 +1,80 @@
+day07
+	Compatible:兼容性
+	viewport：视口
+	device：设备
+	initial：初始化(缩写init)
+	Template：模板
+	scale：缩放
+	container：容器
+	fluid：液体，流
+	navbar：导航条
+	icon：图标
+	dropdown：向下
+	separator：分割
+	group：组
+	current：当前
+	inverse：相反的
+	active：激活
+	default：默认的
+        inverse：反选；
+	item：项
+        Carousel（轮播图选项）
+
+
+
+
+
+
+
+
+Bootstrap(Web前段css框架；Bootstrap是基于HTML、CSS、javascript的。
+响应式布局：一个网站能够兼容多个终端（手机、ipad等）
+
+Viewport是设备的屏幕上能用来显示我们网页的那一块区域；
+总结：
+1.必须设置meta viewport标签
+2.设置浏览器视口宽度为设备理想宽度；
+<meta name= "viewport" content = "width=device-width,initial-scale=1"
+
+
+全局CSS：
+HTML文档设置为HTML5文档类型
+移动设备优先
+...
+布局容器
+第一种：.container类似于固定宽度并支持响应式布局的容器；
+<div class= "container">
+...
+</div>
+第二种：.container-fluid类用于100%宽度，占据全部视口（viewport）的容器；
+<div class="container-fluid">
+...
+</div>
+
+
+需注意：不要修改服务器里面的源代码，覆盖要写在CSS后面；
+
+响应式表格：将任何。table元素包裹在.table-responsive元素中，即可创建响应式表格，其会在小屏幕设备上（小于768px）水平滚动。当屏幕大于768px宽度时，水平滚动条消失；
+
+
+
+Bootstrap提供了一套响应式、移动设备优先的流式栅格系统，随着屏幕或视口（viewport）尺寸的增加，系统会自动分为最多12列；
+
+（1）行（row）必须包裹在容器中去.container(固定宽度）或.container-fluid(100%宽度）
+（2）通过行（row）在水平方向创建一组列（column）
+（3）大于12另起一行；
+屏幕小于768px，使用xs(手机)
+屏幕大于等于768px，使用sm（平板）
+屏幕大于等于992px，使用md（桌面显示器）
+屏幕大于等于1200px，使用lg（大桌面显示器）
+
+注意（实例：多余的列<column>将另起一行排列，row内包含的列<column>大于12个，将另起一行；）
+
+
+列偏移：使用.col-md-offset-*类可以将列向右侧偏移；
+
+visible：可见的；     hidden：隐藏的；
+
+
+导航栏下移十个像素：style=“margin-top：10px；”
+

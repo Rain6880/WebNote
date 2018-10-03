@@ -1,0 +1,118 @@
+javascript简单介绍 
+       HTML:它是整个网站的骨架。
+       CSS：它是对整个网站骨架的内容进行美化（修饰）
+       JavaScript：它能够让让整个页面具有动态效果。
+      ECMAScript：核心；
+      DOM:文本对象模型；
+      BOM对象：浏览器对象模型；
+
+ECMAScript（核心）
+	1.语法
+         （1）区分大小写；
+	2.变量：只能使用var定义，如果在函数的内容使用var定义，那么它是一个局部变量，如果没有使用var它是一个全局的。弱类型！
+	3.数据类型：原始数据类型(undefined未下定义的/null/string/number/boolean/object:如果变量是一种引用类型或Null类型的)
+	4.语句：
+	5.运算符：==（转换之后的结果进行比较）与===（不进行转换，直接比较）的区别
+	6.函数：两种写法(有命名称，匿名的)
+
+BOM对象（浏览器对象模型）
+	window:alert(),prompt(),confirm(),setInterval(),clearInterval(),setTimeout(),clearTimeout()
+//确认删除框：confirm；输入框：prompt；
+	history（在浏览器窗口中访问过的URL;
+）:go(参数)，back():前面一个,forward()：后面一个
+	location（对象包含有关当前URL的信息）: href属性
+ Navigator：导航器，对象包含有关浏览器的信息；
+
+
+事件：
+	onsubmit()此事件写在form标签中，必须有返回值。
+	onload()此事件只能写一次并且放到body标签中
+	其它事件放到需要操作的元素位置。(onclick、onfocus、onblur)
+
+获取元素：
+	document.getElementById("id")；注：如果id是一个字符串，那么必须加上引号，如果是一个变量那么不需要；
+获取元素里面的值:
+	document.getElementById("id").value
+	
+向页面输出
+	弹窗：alert();……
+	向浏览器中写入内容：document.write(内容)；
+	向页面指定位置写入内容,innerHTML  
+
+document：文档
+check：检查
+change：改变
+init：初始化
+history：历史
+alert：警告框
+confirm：确认框
+prompt：输入框
+function：功能(函数)
+click：点击
+back：返回
+tips：提示
+info：信息
+onfocus：聚焦
+onblur：离焦
+location：位置
+screen：屏幕
+navigator：导航(浏览器相关信息)
+margin-bottom：底部边框距离。
+
+使用JS完成注册表单的校验
+1.表单提交事件：onsubmit
+
+2.javascript的输出
+警告框：alert（）；
+向页面指定位置写入内容：innerHTML（属性）
+向页面写入内容：document.write（“”）；
+
+3.步骤分析
+第一步：确定事件（onsubmit）并为其绑定一个函数；
+第二步：书写这个函数（获取用户输入的数据<获取数据时需要在指定位置定义一个id>）
+第三步：对用户输入的数据进行判断；
+第四步：数据合法（让表单提交）
+第五步：数据非法（给出错误非法信息，不让表单提交）
+
+问题：如何控制表单提交
+   关于时间onsubmit：一般用于表单提交的位置，那么需要在定义函数的时候给出一个返回值。onsubmit=return checkForm（）；
+
+注：js中test()函数在正则中的使用，test（）方法用于检测一个字符串是否匹配某个模式。返回一个Boolean值，它指出在被查的字符串中是否匹配给出的正则表达式。
+
+加载事件
+第一步：确定事件（onload）并为其绑定一个函数
+第二步：书写绑定的这个函数
+第三步：书写定时任务（setInterval）
+第四步：书写定时任务里面的函数
+第五步：通过变量的方式，进行循环（获取轮播图的位置，并设置src属性）
+onload：载入事件；
+
+setInterval：按照指定的周期（以毫秒计）来调用函数或计算表达式。
+
+
+使用Js完成首页定时弹广告图片，获取图片的位置（document.getElementById(""))
+隐藏图片：display：none
+定时操作：setInterval（“显示图片的函数”，3000）；
+第一步：在页面指定位置隐藏一个广告图片（使用display属性的none值）
+第二步：确定事件（onload）并为其绑定一个函数
+第三步：书写这个函数（设置一个显示图片的定时操作）
+第四步：书写定时器中的函数（获取广告的位置并设置style的display值block
+第五步：清除显示图片的定时操作（）；
+第六步：书写隐藏图片的定时操作
+第七步：书写定时器的函数（获取图片的位置并设置属性style的display值none；
+第八步：清除隐藏图片的定时操作（）
+
+setInterval（code，millisec[返回值：
+
+
+注册页面表单校验完善步骤；
+第一步：确定事件（onfocus聚焦事件）并为其绑定一个函数；
+第二步：书写绑定函数（在输入框的后面给出提示信息）；
+第三步：确定事件（onblur离焦事件）并为其绑定一个函数；
+第四步：书写函数（对数据进行校验，分别给出提示）；
+span：在后面进行追加；
+
+添加：style.display属性block是css1块对象的默认值。用该值为对象之后添加新行；
+
+
+

@@ -1,0 +1,239 @@
+day02
+	form：表单
+	action:行动(提交的路径)
+	method：方法(提交的方式)
+	input：输入
+	type：类型
+	text：文本(文本输入项)
+	password：密码
+	radio：单选按钮
+	checkbox：复选框
+	file：文件(文件上传项)
+	hidden：隐藏字段
+	reset：重置(重置按钮)
+	button：按钮(普通按钮)
+	name：名称(元素名称)
+	value：值(输入项的内容)
+	size：大小(可以是文字字体的大小，也可以是输入框的宽度)
+	checked：被选中
+	readonly：只读
+	disabled：不可用的
+	maxlength：最大长度(输入框可以输入的最大长度)
+	select：选择(下拉列表项)
+	option：条目(下拉列表项)
+	textarea：区域(文本输入域)
+	submit：提交(提交按钮)
+	selected：选择(下拉列表被选中)
+
+	style：样式
+	color：颜色
+	font-size：字体大小
+	pink：粉红色
+	gold：金黄色
+	gray：灰色
+	blue：蓝色
+	red：红色
+	yellow：黄色
+	black：黑色
+	white：白色
+	background-color：背景颜色
+
+	border：边框
+	width：宽度
+	height：高度
+	margin：外边距
+	padding：内边距
+	float：浮动
+	clear：清除
+	none：无(元素不浮动)
+	left：左边
+	right：右边
+	both：都(同时)
+	display：显示方式
+	block：显示的(显示为块级元素)
+	inline：在一行(显示为内联元素)
+	div：块级元素的区域
+	span：内联元素的区域
+	element：元素
+	top：顶部
+	bottom：底部
+	product：产品，商品
+	header：头部信息
+	menu：菜单
+	show：显示
+	father：父亲
+	big：大的
+	small：小的
+=============================================================
+day03
+	document：文档
+	check：检查
+	change：改变
+	init：初始化
+	history：历史
+	alert：警告框
+	confirm：确认框
+	prompt：输入框
+	function：功能(函数)
+	click：点击
+	back：返回
+	tips：提示
+	info：信息
+	onfocus：聚焦
+	onblur：离焦
+	location：位置
+	screen：屏幕
+	navigator：导航(浏览器相关信息)
+
+=============================================================
+day04
+	onmouseover:鼠标移入
+	onmouseout:鼠标移出
+	attribute：属性
+	node：节点
+	document:文档
+	element：元素
+	textNode：文本节点
+	append：追加
+
+=============================================================
+day05-day06
+	toggle:切换
+	each:每个(遍历)
+	append：追加(内部追加，将B追加到A的内部结尾处)
+	appendTo:追加(内部追加，将A追加到B的内部结尾处)
+	prepend:追加(内部追加，将B追加到A的内部开始处)
+	prependTo:追加(内部追加，将A追加到B的内部开始处)
+	find：查找
+	after(content | fn) 后来，以后(外部追加，在content后面追加)
+	before(content | fn) 以前，在前(外部追加，在content前面追加)
+	insertAfter(content)  插入(外部追加，在content后面插入)
+	insertBefore(content) 插入(外部追加，在content前面插入)
+	empty:空的(清空当前节点之后的所有节点内容)
+	remove:移除
+	detach:分离
+	validate:校验
+	rule：规则
+	required：必须
+	digits：数字(证书)
+	minlength：最小长度
+	equal 相等
+
+
+
+JQuery是一个JavaScript库，它是一个轻量级的库。
+js和jq页面加载区别
+
+js ：window.onload=function(){alert("张三")}；
+     window.onload=function(){alert("老王")}；
+     //传统的方式页面加载存在覆盖问题,加载比jq慢（整个页面加载完毕<包括里面的其它内容，比如图片>）
+
+
+jq ：jQuery(document）.ready(function){alert("李四")}；//jq的加载比js加载快（当整个dom树结构绘制完毕就会加载），jq不存在覆盖问题，加载的时候是顺序执行；
+$(function(){
+      alert("小六")；
+}）；
+
+
+//1.传统js方法获取
+document。getElementById（“btn”）.onclick=function(){
+    location.href="惊喜.html";
+}
+
+
+//2.jq方式获取
+$("#btn").click(function(){
+  location.href="惊喜.html"
+});
+
+
+Dom与JQ对象之间的转换（见文档代码案例）
+$(function(){
+				$("#btn").click(function(){
+					//JQ对象无法操作JS里面的属性和方法！！！
+					//$("#span1").innerHTML="呵呵哒！"
+					$("#span1").html("呵呵哒！");
+					
+					//JQ对象向DOM对象转换方式一
+					$("#span1").get(0).innerHTML="美美哒！";
+					
+					//JQ对象向DOM对象转换方式二
+					$("#span1")[0].innerHTML="棒棒哒！";
+					
+				});
+			});
+		</script>
+	</head>
+	<body>
+		<input type="button" value="JS写入" onclick="write1()"/>
+		<input type="button" value="JQ写入" id="btn"/><br />
+		班长：<span id="span1">你好帅！</span
+
+
+
+使用JQ完成首页定时弹出广告图片；
+实现步骤
+第一步：引入JQuery相关的文件
+第二步：书写页面加载函数；
+第三步：在页面加载函数中，获取显示广告图片的元素；
+第四步：设置定时操作（显示广告图片的函数）
+第五步：在显示广告图片的函数中，使用jQuery的方法让广告图片显示（show（））
+第六步：清除显示广告图片的定时操作；
+第七步：设置定时操作（隐藏广告图片的函数）
+第八步：在隐藏图片广告的函数中，使用jQuery的方法让广告图片隐藏（hide（））；
+第九步：清除隐藏广告图片的定时操作；
+
+（1）show，hide显示，隐藏；
+（2）slideDown向下滑入；slideUp向上滑出；
+（3）fadeIn淡入；fadeOut淡出；
+
+
+toggle切换元素的可见状态。切换显示隐藏
+
+
+层级选择器：
+ancestor descendant:在给定的祖先元素下匹配所有的后代元素（儿子、孙子、重孙子）
+parent>child：在给定的父元素下匹配所有的子元素（儿子）
+prve+next：匹配所有紧接着prve元素后的next元素（紧挨着的，同桌）
+
+prve~siblings：匹配prev元素之后的所有siblings元素（兄弟）
+
+
+
+基本过滤选择器（各行换色）：body中的第一个div元素；first
+               获取body中的最后一个div元素；last
+                选择body中奇数的div；odd
+                选择body中偶数的div；even
+
+
+属性选择器：
+$("input[name!='newsletter']").attr("checked",true);
+
+表单选择器：
+$("select option:selected")
+
+
+表单对象属性;
+enabled可用；disabled不可用；checked选中；selected选择
+
+
+全选、全不选；
+<script>
+			$(function(){
+	       // 全选/ 全不选
+				$("#checkallbox").click(function(){
+					var isChecked = this.checked;
+		//使用对象访问的方式进行遍历，语法：$().each(function(){})
+					$("input[name='hobby']").each(function(){
+						this.checked = isChecked;
+					});
+				});
+			});
+
+
+
+使用jq完成表格隔行换色：addclass；removeClass（删除颜色)
+JQ1.8.3使用attr方法
+$("tdoby input").attr("checked",this.checked);
+JQ1.11.0使用prop方法
+$("tdoby input").prop("checked",this.checked);

@@ -1,0 +1,172 @@
+1.EL技术（Express Lanuage）
+表达式可以嵌入在jsp页面内部，减少jsp脚本的编写，EL出现的2目的是要替代jsp页面中脚本的编写；
+
+
+2.EL从域中取出数据（EL最重要的作用）
+EL最主要的作用是获得四大域中的数据，格式${EL表达式}
+jsp脚本：<%=request.getAttribute(name)%>;
+
+
+//使用EL表达式获得域中的值
+EL表达式替代上面的脚本：${requstScope.company}
+                         ${sessionScope.user.name}
+                         ${applicationScope.list[1].name}
+
+
+
+//使用EL表达式全域查找(同样是依次从pageContext域，request域，session域，application域中获取属性，在某个域中获取后将不在向后寻找)
+：                   ${company}
+                         ${.user.name}
+                         ${list[1].name}
+
+
+
+EL的内置对象11个；
+pageScope，requestScope，sessionScope，applicationScope
+-----获取jsp中域中的数据
+param.paramValues - 接收参数
+  相当于request.getParameter()   request.getParameterValues()
+header.headerValues - 获取请求头信息
+   相当于request.getHeader(name)
+initParam    - 获取全局初始化参数
+ 相当于this.getServletContext().getInitParameter(name)
+cookie      - WEB开发中cookie
+request.getCookies()---cookie.getName（）----cookie.getValue()
+
+[重点]
+pageContext   - WEB开发中的pageContext.
+pageContext获得其他八大对象
+
+
+//获得表单的参数
+request.getParameter("username");
+
+//使用el获得参数
+${param.username}
+${header["User-Agent"]}
+${initParam.aaa}
+${cookie.name.value}
+
+
+
+通过el表达式获得request对象
+${pageContext.request}
+
+重点el表达式可以写到字符串内部，我的客户端可以自动解析，el必须在jsp中解析；
+${pageContext.request.contextPath}
+
+客户端地址（注意）
+
+
+
+EL执行表达式
+例如：
+    $(1+1)
+    ${empty user}
+    ${user==null?true:false}//三元表达式
+
+三、JSTL技术
+JSTL（JSP Standard Tag Library）JSP标准标签库。JSTL出现的目的同el一样也是要替代jsp页面中的脚本代码；
+
+标签库                 标签库的URl                            前缀（prefix）        
+Core（核心库）         java.sun.com/jsp/jstl/core                     c
+I18N（国际化库）                                                      fmt
+SQL                                                                   sql
+XML                                                                   x
+Functions                                                             fn
+
+
+使用jsp的taglib指令导入核心标签库
+
+jstl核心库的常用标签
+1）<c:if test="" >标签
+     其中test是返回boolean的条件
+2）<c:forEach>标签
+使用方式有两种组合形式：
+foreach模拟
+for(int i=0;i<=5;i++){
+          }
+<c:foreach begin = "0" end="5"  var="i">
+
+
+模拟增强for
+for(Product product : productList{
+          }
+//items:一个集合或数组 var:代表集合中的某一个元素
+<c:foreach items="" var ="">
+
+示例
+1）遍历List<String>值
+2)遍历List<user>的值
+3）遍历Map<String,String>的值
+4）遍历Map<String,user>的值
+5）遍历Map<User,List<String,User>>的值
+   entry.key-----User
+   entry.value-----List<String,User>
+
+
+
+
+四.javaEE的开发模式
+1.什么是模式
+模式在开发过程中总结出的“套路”，总结出的一套约定俗成的设计模式
+2.javaEE经历的模式
+model1模式
+    技术组成：jsp+javaBean
+     model的弊端：随着业务复杂性，导致jsp页面比较混乱
+model2模式
+    技术组成：jsp+servlet+javaBean
+   model2的优点：开发中 使用各个技术擅长的方面
+      servlet：擅长处理java业务代码
+      jsp：擅长页面的实现
+
+
+MVC：---web开发的设计模式
+  M：Model----javaBean：封装数据
+  V：View-----视图 jsp：单纯进行页面的显示
+  C：Controller-----控制器 Servlet：（逻辑处理，封装数据，）获取数据--对数据进行封装--传递数据--指派显示的页面
+
+
+3.javaEE的三层架构
+服务器开发时  分成三层
+web层：与客户端交互     //servlet , 封装javaBean   jsp   (struts2  springMVC)
+
+service层:复杂业务处理     //业务代码  (spring)
+
+dao层：与数据库进行交互   //Data Access Object数据访问对象  数据库操作代码
+                          //(hibernate  mybatis)
+开发实践时 三层架构通过包
+
+MVC与三层架构有什么关系?
+没有关系，MVC是三层架构中web层的技术。
+
+
+
+案例：使用三层架构完成商品列表的显示
+
+
+
+
+总结：
+ EL表达式
+   从域中取出数据 ${域中存储的数据的name}
+   ${pageContext.request.contextPath}
+   
+ JSTL标签（核心库）
+   <%@taglib uri="" prefix="c"%>
+  <c:if test="">
+  <c:foreach iteams="数组或集合" var="数组或集合中的每一个元素">
+
+ javaEE三层架构+MVC
+
+  web层：收集页面数据，封装数据，传递数据，指定响应的jsp页面
+service层：逻辑业务代码的编写；
+dao层：数据库的访问代码的编写；
+
+
+
+
+
+
+
+

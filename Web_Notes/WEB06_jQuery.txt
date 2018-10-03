@@ -1,0 +1,91 @@
+使用JQ完成省市二级联动
+2.技术分析
+
+
+2.1数组的遍历操作
+方式一：
+jQuery对象访问
+each（callback）
+ $().each(function(){})
+ $("input[name='hobby']").each(function(){
+this.checked = isChecked;
+	});
+方式二：
+数组和对象操作
+$.each(object,[callback])
+$.each([1,2,3],function(i,n){
+//i表示角标；n表示被遍历后的内容；
+alert(
+
+
+2.2文档处理操作
+追加内容
+apend：A.append（B）将B追加到A的内容的末尾处；
+apendto：A.appendTo（B）将A追加到B的内容的末尾处；
+
+2.3
+删除、清除
+empty、remove、detach；
+
+
+
+3.步骤分析
+第一步：确定事件（change事件），在绑定的函数里面获取用户选择的省份；
+第二步：创建二维数组来存储省份和城市；
+第三步：遍历二维数组中的省份（与用户选择的省份进行比较）【使用JQ的遍历操作】
+第四步：接着遍历数组中的城市；
+第五步：创建一个城市的文本节点【使用JQ的文档操作方法】
+第六步：创建option元素节点【使用JQ的文档操作方法】
+第七步：将文本节点添加到元素节点中【使用form方法】
+第八步：获取第二个下拉列表的option内容；
+第九步：清除第二个下拉列表的option内容；
+
+
+1.2.1属性操作：val、text、html；
+val（）获取value属性的值
+val（...）给value属性设置值；
+
+
+
+
+
+使用jq完成下拉列表左右选择
+2.分析
+第一步：确定事件（鼠标单击事件click）
+第二步：获取左侧下拉列表被选中的option（$("#left option:selected")）【假设左侧select定义了一个id=left】
+第三步：将获取到的option添加到右侧的下拉列表中。（append方法的使用）
+
+
+
+页面未加载执行失败两种解决方法；
+1.将JS代码移动需要操作的html代码后面，一般建议放到body的1外面
+2.将js代码放到一个页面加载函数中去
+window.onload=function(){
+}
+
+
+表单校验：
+使用jQuery插件validation进行表单的校验
+性别<td><span>中需添加<label for="sex" class="error" style="display: none;"></label>
+
+
+,
+errorElement: "label", //用来创建错误提示信息标签,validate插件默认的就是label
+success: function(label) { //验证成功后的执行的回调函数
+//label指向上面那个错误提示信息标签label
+	label.text(" ") //清空错误提示消息
+	.addClass("success"); //加上自定义的success类
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+

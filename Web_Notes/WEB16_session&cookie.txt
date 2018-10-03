@@ -1,0 +1,198 @@
+会话技术Cookie&Session
+案例一、记录用户的上次访问时间---Cookie
+案例二、实现验证码的校验---session
+
+request域作用范围太小，一次请求；
+Context域作用范围太大；
+
+会话技术：
+Http协议是无状态的，服务器并不知道客户端是谁，所以需要会话技术识别客户端的状态；会话技术是帮助服务器记住客户端状态（区分客户端）；
+
+Cookie技术是把客户端数据存在客户端本地；
+session技术是把客户端数据存到服务器；
+都是存无状态的客户端数据；
+
+
+从打开一个浏览器访问某个站点，到关闭这个浏览器的整个过程，成为一次会话；（重点）
+会话技术就是记录这次会话中客户端的转态与数据的；
+会话技术分为Cookie和Session：
+Cookie：数据存储在客户端本地，减轻服务器端的存储的压力，安全性不好，客户端可以清除Cookie
+Session：将数据存储到服务器端，安全性相对较好，增加服务器的压力
+
+
+
+
+1.服务器怎样将一个Cookie写给客户端？
+
+1）创建Cookie：
+Cookie Cookie =new Cookie（String cookieName，String cookieValue）;
+示例：
+Cookie cookie = new Cookie（"username","zhangsan"）;
+那么该cookie会以响应头的形式发送给客户端：
+
+注意：Cookie中不能存储中文；
+
+
+
+
+
+2）设置cookie在客户端的持久化时间：
+cookie.setMaxAge(int seconds);----时间显示秒；
+注意:如果不设置持久化时间，cookie会存储在浏览器的内存中，浏览器关闭cookie信息销毁，如果设置持久化时间，cookie信息会被持久化到浏览器的磁盘文件里；
+cookie是会话级别；  存到硬盘，持久化；
+
+
+3)设置Cookie的携带路径：
+cookie.setpath（String path）；
+"/WEB16/sendCookie";/访问sendCookie资源时才携带这个Cookie；
+"/WEB16";访问WEB16下的任何资源时都携带这个cookie；
+"/";访问服务器下的所有的资源都携带这个cookie；
+
+注意：如果不设置携带路径，那么该cookie信息会在访问产生该cookie的web资源所有的路径都携带cookie信息；（重点:必须是同级资源下）
+
+
+
+
+4）向客户端发送cookie
+response.addCookie(Cookie cookie);
+
+(第一次访问服务器，响应中有cookie；第二次访问，请求头中有cookie；）
+
+
+
+5）删除客户端的cookie：
+如果删除客户端的已经存储的cookie信息，那么就使用同名同路径的持久化时间为0的cookie进行覆盖即可；
+
+
+2.服务器怎么获取客户端携带的Cookie？
+//获得客户端携带的cookie的数据
+Coookie[] cookies = request.getCookie();
+//Cookie cookie = new Cookie("name","zhangsan");
+//通过我的cookie名称获得想要的cookie
+if(cookie!=null){for（Cookie cookie：cookies）{
+//获得cookie的名称
+    String cookieName = cookie.getName();
+    if(cookieName.equals("name")){
+          //获得该cookie的值
+         String cookieValue = cookie.getValue();
+         System.out.println(cookieValue);
+}
+}
+}
+
+
+
+显示用户的上一次访问时间；
+客户端 第一次访问 servlet 1.记住当前访问的时间new Date（）把当前时间以cookie的形式写给客户端；
+
+
+
+
+
+
+Session技术是将数据存储在服务器端的技术，会为每个客户端都创建一块内存空间存储客户的数据，但客户端需要每次都携带一个标识ID去服务器寻找属于自己的内存空间。所以说Session的实现是基于Cookie，Session需要借助于Cookie存储客户端的唯一标识JSESSIONID;
+session技术是基于cookie---cookie技术
+存储session编号---JSESSIONID
+
+怎么创建专属于一个客户端的session区域?
+
+怎样向session区域中存储数据？
+
+session对象的生命周期？一次会话中
+
+发送编号和根据编号去寻找session区域位置 这些操作是客户端和服务器自动完成；
+
+
+1.获得Session对象
+HTTPSession session = request.getSession();
+
+//创建属于该客户端（会话）的私有的session区域
+/*request.getSession()方法内部会判断 该客户端是否在服务器端已经存在session
+*如果该客户端在此服务器不存在session 那么就会创建一个新的session对象；
+*如果该客户端在此服务器已经存在session  获得已经存在的该session返回（实质就是根据JSESSIONID判断该客户端是否在服务器上已经存在）
+*/
+
+
+
+2.怎样向session中存储数据（session也是一个域对象）
+Session也是存储数据的区域对象，所以session对象也具有如下三个方法：
+   session.setAttribute(String name,object obj);
+   session.getAttribute(String name);
+   Session.removeAttribute(String name);
+
+
+3.Session对象的生命周期（面试题/笔试题）
+创建：第一次执行request.getSession()时创建
+销毁：
+    1）服务器（非正常）关闭时
+    2）session过期/失效（默认30分钟）
+
+
+       问题：时间的起算点 从何时开始计算30分钟？
+       从不操作服务器端的资源开始计时
+
+
+
+     可以在工程web.xml中进行配置
+     <session-config>
+             <session-timeout>30</session-timeout>
+     </session-config>
+
+     
+     3）手动销毁session
+      session.invalidate();
+
+
+作用范围：
+  默认在一次会话中，也就是说在，一次会话中任何资源公用一个session对象
+
+
+
+
+面试题：浏览器关闭，session就销毁了？不对
+
+关闭浏览器，cookie创建的JSESSIONID没有了，
+重新打开浏览器，创建新的JSESSIONID,找不到之前的session域，之前创建的session域生命周期内还存在；
+
+
+//手动创建一个存储JSESSIONID的Cookie 为该cookie设置持久化时间
+Cookie cookie= new Cookie（"JSESSIONID",id）;
+cookie.setPath("/WEB16/");
+cookie.setN=MaxAge(60*10);
+
+
+总结：
+  会话技术：
+     cookie技术：存到客户端
+      发送cookie 
+         Cookie cookie = new Cookie（name，value）
+         cookie.setmaxAge(秒)
+         cookie.setPath()
+         cookie.addCookie(cookie)
+      获得cookie 
+      Cookie[] cookie = request.getCookies（);
+        cookie.getName();
+        cookie.getValue();
+
+
+Session技术：存到服务器端 借助cookie存储JSESSIONID
+           HttpSession session = request.getSession();
+
+             setAttribute(name,value);
+             getAttribute(name);
+   
+             session生命周期；
+                  创建：第一次指定request.getSession();
+                  销毁：服务器关闭、session失效/过期（默认时间30分钟）、手动session.invalidate（）；
+             session作用范围：一次会话中；
+
+
+
+
+
+
+
+    
+
+
+
