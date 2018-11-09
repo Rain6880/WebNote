@@ -1,9 +1,22 @@
-ǰ̨ϵͳ �ͻ�
-��̨ϵͳ ������Ա
+前台系统 客户
+后台系统 工作人员
  
 d = new dTree();
-17�ز���
+17素材网
 
 
-<a>��ǩ���峬���ӣ����ڴ�һ��ҳ�����ӵ���һ��ҳ�棻
-varStatus=��vs��   ${vs.count}
+<a>标签定义超链接，用于从一张页面链接到另一张页面；
+varStatus=“vs”   ${vs.count}
+
+商品管理 添加事物
+
+enctype="multipart/form-data"要删掉，要不然无法提交
+传数据用转发，防止数据丢失，其它都用重定向
+
+service层有事物控制，在service层进行try/catch；service层没有事物控制，在web层进行try/catch
+
+
+删除商品的操作
+#代表执行本页面
+a href="javascript：void（0）;"代表什么都不写
+confirm（"您确认要删除吗"）
